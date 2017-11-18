@@ -11,3 +11,7 @@ LS = zeros(5,1);
 LT = zeros(5,1);
 
 route = optTrajectory( L, LS, LT )
+
+% in this experiment setting, actually is finding shortest path from any
+% node to any node in given time steps. Here doesn't assume staying at the
+% same place cost nothing. So this setup is more versatile
