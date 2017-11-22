@@ -16,7 +16,7 @@ function [ Jstar, mustar ] = VI_max( P, g, g0, Accuracy)
     m = size(P,2); % Number of controls
     J = zeros(n, 1); % store cost of all the rounds
     Jstar = zeros(n, 1); % J's converge to Jstar
-    mustar = zeros(n, 1); % Optimal policy for Jstar
+    mustar = []; % Optimal policy for Jstar
     choice = zeros(n, 1); % store choices of all the records
     
     % Step 1, Stage 0
@@ -50,10 +50,9 @@ function [ Jstar, mustar ] = VI_max( P, g, g0, Accuracy)
     % answer output
     for p = 1:n
         Jstar(p)= J(p, k); 
-        mustar(p) = choice(p, k-1); 
     end
     % k-1
     % J
-    % choice
+    mustar = choice(1:3, k-1);  % 1:3 for 4u, 1:6 for plot_pWin
 end
 
