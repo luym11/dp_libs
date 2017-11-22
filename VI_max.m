@@ -6,10 +6,12 @@ function [ Jstar, mustar ] = VI_max( P, g, g0, Accuracy)
 % P (transition probabilities) is a cell matrix, P{1}, P{2}, ..., P{M}. Each P{m} is N*N under control
 % action m, N is the number of states. P{m}(i,j) is Pr(i->j|m)
 % g is N*M*N stage cost, where g(i,m,j) indicates cost of i->j using m
-% gT is terminal cost array
-% T is terminal time
-% J0 in N dimensional vector of optimal cost-to-go for each state at time 0
-% mu0 is N dim vector of optimal control action for each state at time 0
+% g0 is initial cost array, it can be anything
+% Jstar in N dimensional vector of optimal cost-to-go for each state at
+% optimal solution
+% mustar is the last column of choice(N*(k-1), denotes all the u selections during
+% iteration), is the optimal control action for each state for optimal
+% policy
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
     % init
     n = size(g0, 1); % Number of states
