@@ -1,4 +1,4 @@
-function [ Jstar, mustar ] = VI_max( P, g, g0, Accuracy)
+function [ Jstar, mustar] = VI_max( P, g, g0, Accuracy)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generic VI process to solve Bellman Equation for infinite horizon 
 % Here we use DP recursion( new notations) i.e.,
@@ -9,7 +9,7 @@ function [ Jstar, mustar ] = VI_max( P, g, g0, Accuracy)
 % g0 is initial cost array, it can be anything
 % Jstar in N dimensional vector of optimal cost-to-go for each state at
 % optimal solution
-% mustar is the last column of choice(N*(k-1), denotes all the u selections during
+% mustar is the last column of choice (N*(k-1), denotes all the u selections during
 % iteration), is the optimal control action for each state for optimal
 % policy
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,6 +55,7 @@ function [ Jstar, mustar ] = VI_max( P, g, g0, Accuracy)
     end
     % k-1
     % J
-    mustar = choice(1:3, k-1);  % 1:3 for 4u, 1:6 for plot_pWin
+    %mustar = choice(1:3, k-1);  % 1:3 for 4u, 1:6 for plot_pWin
+    mustar = choice(:, k-1); 
 end
 
