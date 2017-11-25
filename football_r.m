@@ -96,7 +96,7 @@ function NeighborIndices = generate_neighbors_r(state)
         end
     else
         for yl_ = yl:YL-1
-            if( tg-(yl_ - yl) >= 0 )
+            if( tg-(yl_ - yl) >= 1 )
                 state_ = [yl_, dw+1, tg-(yl_ - yl)];  
             else
                 state_ = [yl_, 1, 10];
