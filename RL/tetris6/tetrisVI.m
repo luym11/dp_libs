@@ -47,7 +47,7 @@ function DATAout = tetrisVI(DATA)
     end
     g0 = zeros(N+1,1); 
     alpha = 0.9; 
-    [ Jstar, mustar] = VI_max_alpha( P, g, g0, alpha, 1); 
+    [ Jstar, mustar] = VI_max_alpha( P, g, g0, alpha, 2); 
 
     DATAout.Jstar = Jstar; 
     DATAout.mustar = mustar; 

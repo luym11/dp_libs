@@ -14,6 +14,17 @@ function [decision,DATAout] = myPlay(board,pieceNum,DATA)
 % DATAout = DATA;
 state = getTetrisState(board,pieceNum,DATA.flatBoards,DATA.stateMap); 
 u = DATA.mustar(state) - DATA.moves_array(pieceNum);
-decision = DATA.moves{pieceNum}{u};
+if u <= 1 % if model is not fully trained
+    u = 1;
+end
+try
+    decision = DATA.moves{pieceNum}{u};
+catch ME
+    u
+    state
+    DATA.mustar(state)
+    pieceNum
+    DATA.moves_array(pieceNum)
+end
 DATAout = DATA; 
 

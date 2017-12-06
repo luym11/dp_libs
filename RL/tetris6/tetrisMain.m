@@ -21,11 +21,11 @@
 
 clc;clear; close all
 
-tData.nMaxPieces = 50; % max number of pieces per episode
+tData.nMaxPieces = 100; % max number of pieces per episode
 tData.nEpisodes = 5; % number of episodes
 
 tData.buildStates = 1; % flag to build state space
-tData.morePieces = 0; % add the s-shaped pieces
+tData.morePieces = 1; % add the s-shaped pieces
 
 tData.GameSize = [6,3]; % height x width
 tData.RowCap = 3; % height of gameOver
