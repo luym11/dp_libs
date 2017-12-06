@@ -69,5 +69,7 @@ tData.S_Sounds=0; % Switch, 1=sounds on, 0=sounds off
 tData.S_Plot=1;  % Switch to Perform plotting, 1=yes
 
 tData.startPiece = randi(length(Pieces));
+
+tData = tetrisVI(tData); 
 % Run Demo 
 [Iscore,nPieces] = tetrisMyPlayDemo(tData);
