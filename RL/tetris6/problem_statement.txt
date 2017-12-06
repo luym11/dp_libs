@@ -1,0 +1,12 @@
+This assignment is to implement dynamic programming and reinforcement learning on a small-scale tetris
+problem.
+
+1. Build the state transition matrix for a 3x3 tetris grid.
+• The state is the board configuration and piece.
+• The control action is the placement of the piece.
+• The stage reward is the number of rows eliminated in a placement.
+• It may be helpful to use so-called “sparse” matrices to build the transition matrix.
+
+2. Derive the optimal policy using either value iteration or policy iteration.
+
+3. Implement an exact (table-lookup) Q-learning policy
