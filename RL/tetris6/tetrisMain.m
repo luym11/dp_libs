@@ -22,10 +22,10 @@
 clc;clear; close all
 
 tData.nMaxPieces = 100; % max number of pieces per episode
-tData.nEpisodes = 5; % number of episodes
+tData.nEpisodes = 100; % number of episodes
 
 tData.buildStates = 1; % flag to build state space
-tData.morePieces = 1; % add the s-shaped pieces
+tData.morePieces = 0; % add the s-shaped pieces
 
 tData.GameSize = [6,3]; % height x width
 tData.RowCap = 3; % height of gameOver
@@ -70,6 +70,8 @@ tData.S_Plot=1;  % Switch to Perform plotting, 1=yes
 
 tData.startPiece = randi(length(Pieces));
 
+% Offline VI 
 tData = tetrisVI(tData); 
+
 % Run Demo 
 [Iscore,nPieces] = tetrisMyPlayDemo(tData);

@@ -18,10 +18,13 @@ function DATAout = tetrisVI(DATA)
     end
 
     P = cell(1, M); 
+    g = cell(1, M); 
     for i = 1:M       
-        P{i} = zeros(N+1);
+        P{i} = sparse(N+1, N+1);
+        g{i} = sparse(N+1, N+1);
     end
-    g = zeros(N+1, M, N+1); 
+    
+     
 
     for s = 1:N
         % get the board and piece at s
@@ -38,7 +41,7 @@ function DATAout = tetrisVI(DATA)
                     s_new = N+1; 
                 end
                 P{i+moves_array(piece)}(s, s_new) = P{i+moves_array(piece)}(s, s_new) + 1/n_Pieces; 
-                g(s, i+moves_array(piece), s_new) = g(s, i+moves_array(piece), s_new) + score/n_Pieces; 
+                g{i+moves_array(piece)}(s, s_new) = g{i+moves_array(piece)}(s, s_new) + score/n_Pieces; 
             end
         end
     end
@@ -47,7 +50,7 @@ function DATAout = tetrisVI(DATA)
     end
     g0 = zeros(N+1,1); 
     alpha = 0.9; 
-    [ Jstar, mustar] = VI_max_alpha( P, g, g0, alpha, 2); 
+    [ Jstar, mustar] = VI_max_alpha( P, g, g0, alpha, 0.01); 
 
     DATAout.Jstar = Jstar; 
     DATAout.mustar = mustar; 

@@ -1,12 +1,13 @@
 function [ Jstar, mustar] = VI_max_alpha( P, g, g0, alpha, Accuracy)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Generic VI process to solve Bellman Equation for infinite horizon 
+% Generic VI process to solve Bellman Equation for infinite horizon£¬ with
+% vector implementation
 % With discounted cost, max
 % Here we use DP recursion( new notations) i.e.,
 % J_0 -> J_1 -> ... -> J_{inf}
 % P (transition probabilities) is a cell matrix, P{1}, P{2}, ..., P{M}. Each P{m} is N*N under control
 % action m, N is the number of states. P{m}(i,j) is Pr(i->j|m)
-% g is N*M*N stage cost, where g(i,m,j) indicates cost of i->j using m
+% g{u} is N*N stage cost, where g(i, j) indicates cost of i->j using u
 % g0 is initial cost array, it can be anything
 % Jstar in N dimensional vector of optimal cost-to-go for each state at
 % optimal solution
@@ -36,13 +37,14 @@ function [ Jstar, mustar] = VI_max_alpha( P, g, g0, alpha, Accuracy)
         for i = 1:n
             All_J_i_k = zeros(m, 1);
             for u = 1:m
-                for j = 1:n
-                    cost = ( g(i, u, j) + J(j, k) ) * P{u}(i, j);
-                    if(isnan(cost) == 1) % 0 times inf case: set to 0
-                        cost = 0; 
-                    end
-                    All_J_i_k(u) = All_J_i_k(u) + alpha * cost; 
-                end
+                All_J_i_k(u) = alpha* ((g{u}(i, :) + J(:, k)')  * P{u}(i, :)');
+%                 for j = 1:n
+%                     cost = ( g{u}(i, j) + J(j, k) ) * P{u}(i, j);
+%                     if(isnan(cost) == 1) % 0 times inf case: set to 0
+%                         cost = 0; 
+%                     end
+%                     All_J_i_k(u) = All_J_i_k(u) + alpha * cost; 
+%                 end
             end
             [J(i, k+1), choice(i, k)] = max(All_J_i_k);
         end 
@@ -60,5 +62,4 @@ function [ Jstar, mustar] = VI_max_alpha( P, g, g0, alpha, Accuracy)
     %mustar = choice(1:3, k-1);  % 1:3 for 4u, 1:6 for plot_pWin
     mustar = choice(:, k-1); 
 end
-
 

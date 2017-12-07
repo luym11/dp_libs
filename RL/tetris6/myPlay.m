@@ -12,6 +12,8 @@ function [decision,DATAout] = myPlay(board,pieceNum,DATA)
 % 
 % decision = DATA.moves{pieceNum}{uBest};
 % DATAout = DATA;
+
+% Offline VI policy, can use the same code for QL
 state = getTetrisState(board,pieceNum,DATA.flatBoards,DATA.stateMap); 
 u = DATA.mustar(state) - DATA.moves_array(pieceNum);
 if u <= 1 % if model is not fully trained
@@ -27,4 +29,6 @@ catch ME
     DATA.moves_array(pieceNum)
 end
 DATAout = DATA; 
+
+
 
