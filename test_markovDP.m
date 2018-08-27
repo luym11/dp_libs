@@ -74,7 +74,7 @@ end
 %      4
 %      4
 
-function [P,g,gT,T] = exmp2()
+function [P,g,gT,T] = exmp2() % input format modified for the effective implementation
 
     T = 10;
     P{1} = [0.85 0.1 0.05 0 0; 0.65 0.3 0.05 0 0; 0.65 0.1 0.25 0 0;...
@@ -93,14 +93,14 @@ function [P,g,gT,T] = exmp2()
     s2 = 2*ones(5,1);
     s5 = 10*ones(5,1);
     g1 = [s1 s2 s5 s5 s5];
-    g(:,1,:) = g1;
+    g{1} = g1;
     g2 = [s2 s1 s2 s5 s5];
-    g(:,2,:) = g2;
+    g{2} = g2;
     g3 = [s5 s2 s1 s2 s5];
-    g(:,3,:) = g3;
+    g{3} = g3;
     g4 = [s5 s5 s2 s1 s2];
-    g(:,4,:) = g4;
+    g{4} = g4;
     g5 = [s5 s5 s5 s2 s1];
-    g(:,5,:) = g5;
+    g{5} = g5;
     
 end

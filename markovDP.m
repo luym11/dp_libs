@@ -3,7 +3,7 @@ function [ J0, mu0 ] = markovDP( P, g, gT, T )
 % Generic DP solver for finite state Markov Decision Process
 % P is a cell matrix, P{1}, P{2}, ..., P{M}. Each P{m} is N*N under control
 % action m, N is the number of states. P{m}(i,j) is Pr(i->j|m)
-% g is N*M*N stage cost, where g(i,m,j) indicates cost of i->j using m
+% g{u} is N*N stage cost, where g{u}(i,j) indicates cost of i->j using u
 % gT is terminal cost array
 % T is terminal time
 % J0 in N dimensional vector of optimal cost-to-go for each state at time 0
@@ -27,6 +27,8 @@ function [ J0, mu0 ] = markovDP( P, g, gT, T )
         for i = 1:n
             All_J_i_k = zeros(m, 1);
             for u = 1:m
+                All_J_i_k(u) = ((g{u}(i, :) + J(:, k+1)')  * P{u}(i, :)');
+                %{
                 for j = 1:n
                     cost = ( g(i, u, j) + J(j, k+1) ) * P{u}(i, j);
                     if(isnan(cost) == 1) % 0 times inf case: set to 0
@@ -34,6 +36,7 @@ function [ J0, mu0 ] = markovDP( P, g, gT, T )
                     end
                     All_J_i_k(u) = All_J_i_k(u) + cost; 
                 end
+                %}
             end
             % contemporary_J
             [J(i, k), choice(i, k)] = min(All_J_i_k);
